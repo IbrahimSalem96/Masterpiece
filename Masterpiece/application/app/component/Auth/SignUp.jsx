@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Center, Box, Heading, VStack, FormControl, Input, Button } from 'native-base';
+import { Center, Box, Heading, VStack, FormControl, Input, Button, Text } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
@@ -8,20 +8,24 @@ const SignUp = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleSignUp = async () => {
+        if (!username || !email || !password) {
+            setErrorMessage('Please fill in all fields.');
+            return;
+        }
+
         try {
-            const response = await axios.post('http://localhost:8000/api/auth/register', {
+            const response = await axios.post('http://10.0.2.2:8000/api/auth/register', {
                 username: username,
                 email: email,
                 password: password
             });
 
-            console.log('Response from server:', response.data);
-
             navigation.navigate('Home');
         } catch (error) {
-            console.error('Error:', error);
+            setErrorMessage('user already exist');
         }
     };
 
@@ -56,6 +60,11 @@ const SignUp = () => {
                         onPress={handleSignUp}>
                         Sign up
                     </Button>
+                    {errorMessage ? (
+                        <Text mt="2" color="red.500">
+                            {errorMessage}
+                        </Text>
+                    ) : null}
                 </VStack>
             </Box>
         </Center>

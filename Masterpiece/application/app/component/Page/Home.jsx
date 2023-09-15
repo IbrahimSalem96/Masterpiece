@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, FlatList, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 export default function Home({ navigation }) {

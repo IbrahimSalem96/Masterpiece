@@ -11,8 +11,6 @@ const { User, ValidateRegisterUser, ValidateLoginUser } = require('../models/Use
 ---------------------------------------------------------------*/
 module.exports.registerUserCtr1 = asyncHandler(async (req, res) => {
 
-    console.log(req.body)
-
     const { error } = ValidateRegisterUser(req.body)
     if (error) {
         return res.status(400).json({ message: error.details[0].message })

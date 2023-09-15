@@ -1,12 +1,14 @@
 import React from 'react';
 import { TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { UserInfoContext } from '../../context/UserInfo';
 
 export default function Header() {
+    const { userInfo, setUserInfo } = React.useContext(UserInfoContext);
     const navigation = useNavigation();
 
     return (
-        1 === 2 ? (
+        userInfo !== null ? (
             <TouchableOpacity
                 style={{ marginRight: 10 }}
                 onPress={() => navigation.navigate('User')}

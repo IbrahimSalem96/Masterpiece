@@ -1,14 +1,40 @@
-import React from 'react';
+import { useContext, useState } from 'react';
 import { Center, Box, Heading, VStack, FormControl, Input, Link, Button, HStack, Text } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { UserInfoContext } from '../../context/UserInfo';
+
 
 const SignIn = () => {
+    const { userInfo, setUserInfo, fetchUserInfo } = useContext(UserInfoContext);
     const navigation = useNavigation();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
+    const handleSignIn = async () => {
+        if (!email || !password) {
+            setErrorMessage('Please fill in all fields.');
+            return;
+        }
 
-    const handleSignIn = () => {
-        alert("log in");
+        try {
+            const response = await axios.post('http://10.0.2.2:8000/api/auth/login', {
+                email: email,
+                password: password
+            });
+
+            await AsyncStorage.setItem("userInfo", JSON.stringify(response.data));
+
+            fetchUserInfo()
+
+            navigation.navigate('Home');
+
+        } catch (error) {
+            setErrorMessage('Invalid email or password');
+        }
     };
+
 
     return (
         <Center flex={1}>
@@ -26,11 +52,18 @@ const SignIn = () => {
                 <VStack space={3} mt="5">
                     <FormControl>
                         <FormControl.Label>Email</FormControl.Label>
-                        <Input />
+                        <Input
+                            value={email}
+                            onChangeText={(text) => setEmail(text)}
+                        />
                     </FormControl>
                     <FormControl>
                         <FormControl.Label>Password</FormControl.Label>
-                        <Input type="password" />
+                        <Input
+                            type="password"
+                            value={password}
+                            onChangeText={(text) => setPassword(text)}
+                        />
                     </FormControl>
                     <Button
                         mt="2"
@@ -44,7 +77,7 @@ const SignIn = () => {
                         <Text fontSize="sm" color="coolGray.600" _dark={{
                             color: "warmGray.200"
                         }}>
-                            I'm a new user.{" "}
+                            I'm a new user.
                         </Text>
                         <Link _text={{
                             color: "indigo.500",

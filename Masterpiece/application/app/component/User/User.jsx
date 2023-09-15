@@ -5,10 +5,29 @@ import NewPostIcon from 'react-native-vector-icons/Feather'
 import LogoutIcon from 'react-native-vector-icons/AntDesign'
 import Settings from 'react-native-vector-icons/AntDesign'
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { UserInfoContext } from '../../context/UserInfo';
+import { useContext } from 'react';
 
 
 export default function User() {
+    const { userInfo, setUserInfo, fetchUserInfo } = useContext(UserInfoContext);
     const navigation = useNavigation();
+
+    const handleLogout = async () => {
+        try {
+            await AsyncStorage.removeItem("userInfo");
+
+            setUserInfo(null)
+
+            fetchUserInfo()
+
+            navigation.navigate('Home');
+        } catch (error) {
+            // console.error('Error logging out:', error);
+        }
+    }
+
 
     return (
         <View>
@@ -43,7 +62,7 @@ export default function User() {
 
                 <TouchableOpacity style={styles.list}>
                     <LogoutIcon name="logout" size={22} />
-                    <Text style={styles.title}>Logout</Text>
+                    <Text style={styles.title} onPress={handleLogout}>Logout</Text>
                 </TouchableOpacity>
             </View>
         </View >

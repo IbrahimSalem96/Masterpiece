@@ -13,7 +13,7 @@ export default function Cars() {
         getCart();
     })
     const getCart = () => {
-        axios.get("http://127.0.0.1:8000/api/shop/car/")
+        axios.get("http://10.0.2.2:8000/api/shop/car/")
             .then((response) => {
                 // Handle the response data here
                 SetCart(response.data);
@@ -117,7 +117,7 @@ export default function Cars() {
 
     return (
         <FlatList
-            data={Services}
+            data={cart}
             renderItem={renderItemServices}
             keyExtractor={(item) => item.id}
             style={styles.container}

@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+            shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard users</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link href="./style/css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="index.html">Admin</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0
+                me-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Search
+                        for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
+                        class="fas fa-search"></i></button>
+            </div>
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="./Settings/Settings.html">Settings</a></li>
+                    <li><a class="dropdown-item" href="./Settings/advertisements.html">advertisements</a></li>
+                    <li><a class="dropdown-item" href="#!">Notification</a></li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">control Board</div>
+                        <a class="nav-link" href="index.html">
+                            <div class="sb-nav-link-icon"><i class="fas
+                                        fa-tachometer-alt"></i></div>
+                            Dashboard
+                        </a>
+                        <!-- Start Users tables  -->
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers"
+                            aria-expanded="false" aria-controls="collapseUsers">
+                            <div class="sb-nav-link-icon"><svg class="svg-inline--fa fa-table" aria-hidden="true"
+                                    focusable="false" data-prefix="fas" data-icon="table" role="img"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                    <path fill="currentColor"
+                                        d="M448 32C483.3 32 512 60.65 512 96V416C512 451.3 483.3 480 448 480H64C28.65 480 0 451.3 0 416V96C0 60.65 28.65 32 64 32H448zM224 256V160H64V256H224zM64 320V416H224V320H64zM288 416H448V320H288V416zM448 256V160H288V256H448z">
+                                    </path>
+                                </svg></div> Users tables
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseUsers" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="./users.html">Users</a>
+                                <a class="nav-link" href="./vendors.html">vendors</a>
+                            </nav>
+                        </div>
+                        <!-- End Users tables  -->
+                        <div class="sb-sidenav-menu-heading">CONTROL
+                            INTERFACES</div>
+                        <!-- Start tables Services  -->
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseServices" aria-expanded="false" aria-controls="collapseServices">
+                            <div class="sb-nav-link-icon"><svg class="svg-inline--fa fa-table" aria-hidden="true"
+                                    focusable="false" data-prefix="fas" data-icon="table" role="img"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                    <path fill="currentColor" d="M448 32C483.3 32 512 60.65 512
+                                            96V416C512 451.3 483.3 480 448
+                                            480H64C28.65 480 0 451.3 0 416V96C0
+                                            60.65 28.65 32 64 32H448zM224
+                                            256V160H64V256H224zM64
+                                            320V416H224V320H64zM288
+                                            416H448V320H288V416zM448
+                                            256V160H288V256H448z">
+                                    </path>
+                                </svg></div> Services
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseServices" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="./Services/Sell&buy.html">Sell and
+                                    buy</a>
+                                <a class="nav-link" href="./Services/Accidents.html">Accidents</a>
+                                <a class="nav-link" href="./Services/Maintenance.html">Maintenance</a>
+                                <a class="nav-link" href="./Services/Rental.html">Rental</a>
+                                <a class="nav-link" href="./Services/OnTheRoad.html">On the
+                                    road</a>
+                                <a class="nav-link" href="./Services/BeforeBuying.html">Before
+                                    buying</a>
+                                <a class="nav-link" href="./Services/pieces.html">pieces</a>
+                            </nav>
+                        </div>
+                        <!-- End tables Services  -->
+                        <!-- Start tables Agencies  -->
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseAgencies" aria-expanded="false" aria-controls="collapseAgencies">
+                            <div class="sb-nav-link-icon"><svg class="svg-inline--fa fa-table" aria-hidden="true"
+                                    focusable="false" data-prefix="fas" data-icon="table" role="img"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                    <path fill="currentColor" d="M448 32C483.3 32 512 60.65 512
+                                            96V416C512 451.3 483.3 480 448
+                                            480H64C28.65 480 0 451.3 0 416V96C0
+                                            60.65 28.65 32 64 32H448zM224
+                                            256V160H64V256H224zM64
+                                            320V416H224V320H64zM288
+                                            416H448V320H288V416zM448
+                                            256V160H288V256H448z">
+                                    </path>
+                                </svg></div> Agencies
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseAgencies" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="./Agencies/MaintenanceAssistance.html">Maintenance
+                                    assistance</a>
+                                <a class="nav-link" href="./Agencies/Import.html">Import</a>
+                            </nav>
+                        </div>
+                        <!-- End tables Agencies  -->
+                        <!-- Start tables Development  -->
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseDevelopment" aria-expanded="false"
+                            aria-controls="collapseDevelopment">
+                            <div class="sb-nav-link-icon"><svg class="svg-inline--fa fa-table" aria-hidden="true"
+                                    focusable="false" data-prefix="fas" data-icon="table" role="img"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                    <path fill="currentColor" d="M448 32C483.3 32 512 60.65 512
+                                            96V416C512 451.3 483.3 480 448
+                                            480H64C28.65 480 0 451.3 0 416V96C0
+                                            60.65 28.65 32 64 32H448zM224
+                                            256V160H64V256H224zM64
+                                            320V416H224V320H64zM288
+                                            416H448V320H288V416zM448
+                                            256V160H288V256H448z">
+                                    </path>
+                                </svg></div> Development
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseDevelopment" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="./Development/Internal.html">Internal</a>
+                                <a class="nav-link" href="./Development/External.html">External</a>
+                            </nav>
+                        </div>
+                        <!-- End tables Development  -->
+                        <!-- Start tables Development  -->
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseScrap"
+                            aria-expanded="false" aria-controls="collapseScrap">
+                            <div class="sb-nav-link-icon"><svg class="svg-inline--fa fa-table" aria-hidden="true"
+                                    focusable="false" data-prefix="fas" data-icon="table" role="img"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                    <path fill="currentColor" d="M448 32C483.3 32 512 60.65 512
+                                            96V416C512 451.3 483.3 480 448
+                                            480H64C28.65 480 0 451.3 0 416V96C0
+                                            60.65 28.65 32 64 32H448zM224
+                                            256V160H64V256H224zM64
+                                            320V416H224V320H64zM288
+                                            416H448V320H288V416zM448
+                                            256V160H288V256H448z">
+                                    </path>
+                                </svg></div> Scrap
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseScrap" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="./Scrap/ScrapAuction.html">Sell
+                                    and Buy</a>
+                                <a class="nav-link" href="./Scrap/Sell&Buy.html">Scrap
+                                    auction service</a>
+                                <a class="nav-link" href="./Scrap/ListingRequest.html">Listing Request</a>
+                            </nav>
+                        </div>
+                        <!-- End tables Development  -->
+                        <!-- Start  DataTable Example  -->
+                        <div class="sb-sidenav-menu-heading">Addons</div>
+                        <a class="nav-link" href="tables.html">
+                            <div class="sb-nav-link-icon"><i class="fas
+                                        fa-table"></i></div>
+                            Tables
+                        </a>
+                        <!-- End  DataTable Example  -->
+                        <div style="width: 90%; height: 2px;
+                                background-color: #8E8E8E; margin: auto;"></div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseError"
+                            aria-expanded="false" aria-controls="collapseError">layout
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseError" aria-labelledby="headingTwo"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav
+                                    accordion" id="sidenavAccordionPages">
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                                    data-bs-target="#pagesCollapseAuth" aria-expanded="false"
+                                    aria-controls="pagesCollapseAuth">
+                                    Authentication
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
+                                    data-bs-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" target="_blank"
+                                            href="./layout/Authentication/login.html">Login</a>
+                                        <a class="nav-link" target="_blank"
+                                            href="./layout/Authentication/register.html">Register</a>
+                                        <a class="nav-link" target="_blank"
+                                            href="./layout/Authentication/password.html">Forgot
+                                            Password</a>
+                                    </nav>
+                                </div>
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                                    data-bs-target="#pagesCollapseError" aria-expanded="false"
+                                    aria-controls="pagesCollapseError">
+                                    Page Error
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
+                                    data-bs-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" target="_blank" href="./layout/Page
+                                                Error/401.html">401
+                                            Page</a>
+                                        <a class="nav-link" target="_blank" href="./layout/Page
+                                                Error/404.html">404
+                                            Page</a>
+                                        <a class="nav-link" target="_blank" href="./layout/Page
+                                                Error/500.html">500
+                                            Page</a>
+                                    </nav>
+                                </div>
+                            </nav>
+                        </div>
+                        <a class="nav-link" href="CreateAccount.html">
+                            <div class="sb-nav-link-icon"><i class="fas
+                                        fa-chart-area"></i></div>
+                            Create Account
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">Dashboard</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">vendors</li>
+                    </ol>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            DataTable vendors
+                        </div>
+                        <div class="card-body">
+                            <table id="datatablesSimple">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Img</th>
+                                        <th>Status</th>
+                                        <th>Start date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Img</th>
+                                        <th>Status</th>
+                                        <th>Start date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <tr>
+                                        <td>Tiger Nixon</td>
+                                        <td>System Architect</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2011/04/25</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Garrett Winters</td>
+                                        <td>Accountant</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2011/07/25</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ashton Cox</td>
+                                        <td>Junior Technical Author</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2009/01/12</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cedric Kelly</td>
+                                        <td>Senior Javascript Developer</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2012/03/29</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Airi Satou</td>
+                                        <td>Accountant</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2008/11/28</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Brielle Williamson</td>
+                                        <td>Integration Specialist</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2012/12/02</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Herrod Chandler</td>
+                                        <td>Sales Assistant</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2012/08/06</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rhona Davidson</td>
+                                        <td>Integration Specialist</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2010/10/14</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Colleen Hurst</td>
+                                        <td>Javascript Developer</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2009/09/15</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sonya Frost</td>
+                                        <td>Software Engineer</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2008/12/13</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jena Gaines</td>
+                                        <td>Office Manager</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2008/12/19</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Quinn Flynn</td>
+                                        <td>Support Lead</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2013/03/03</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Charde Marshall</td>
+                                        <td>Regional Director</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2008/10/16</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Haley Kennedy</td>
+                                        <td>Senior Marketing Designer</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2012/12/18</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tatyana Fitzpatrick</td>
+                                        <td>Regional Director</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2010/03/17</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Michael Silva</td>
+                                        <td>Marketing Designer</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2012/11/27</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Paul Byrd</td>
+                                        <td>Chief Financial Officer (CFO)</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2010/06/09</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gloria Little</td>
+                                        <td>Systems Administrator</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2009/04/10</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bradley Greer</td>
+                                        <td>Software Engineer</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2012/10/13</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dai Rios</td>
+                                        <td>Personnel Lead</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2012/09/26</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jenette Caldwell</td>
+                                        <td>Development Lead</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2011/09/03</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yuri Berry</td>
+                                        <td>Chief Marketing Officer (CMO)</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2009/06/25</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Caesar Vance</td>
+                                        <td>Pre-Sales Support</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2011/12/12</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Doris Wilder</td>
+                                        <td>Sales Assistant</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2010/09/20</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Angelica Ramos</td>
+                                        <td>Chief Executive Officer (CEO)</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2009/10/09</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gavin Joyce</td>
+                                        <td>Developer</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2010/12/22</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jennifer Chang</td>
+                                        <td>Regional Director</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2010/11/14</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Brenden Wagner</td>
+                                        <td>Software Engineer</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2011/06/07</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Donna Snider</td>
+                                        <td>Customer Support</td>
+                                        <td><img class="img-table"
+                                                src="https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+                                                alt="person"></td>
+                                        <td><button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-check"></i></button></td>
+                                        <td>2011/01/25</td>
+                                        <td>
+                                            <button type="button" class="btn
+                                                    btn-success"><i class="fa-solid
+                                                        fa-pen-to-square"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-warning"><i class="fa-solid fa-xmark
+                                                        text-white"></i></button>
+                                            <button type="button" class="btn
+                                                    btn-danger"><i class="fa-solid
+                                                        fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer class="py-4 mt-auto bg-dark">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center
+                            justify-content-between small">
+                        <div class="text-muted ">Copyright &copy; Your
+                            Website 2022</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="./style/js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script src="./style/js/datatables-simple-demo.js"></script>
+</body>
+
+</html>

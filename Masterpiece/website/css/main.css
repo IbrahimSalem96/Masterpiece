@@ -1,0 +1,931 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --colorBackground: #D81324;
+  --colorText: #D81324;
+  --colorBottom: #D81324;
+  --colorHover: #b8101f;
+  --colorWhite: white;
+  --colorblack: black;
+  --borderColor: #ad0f1d;
+  --colorAnyText: #74787C;
+  --transition: ease-in-out .3s;
+}
+
+body {
+  font-family: "Ubuntu", sans-serif;
+}
+
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*############################################################## Start header ###########################################################*/
+header nav .navbar-nav {
+  font-size: 14px;
+}
+
+header .Login {
+  height: 70px;
+  width: 14em;
+  cursor: pointer;
+  background-color: var(--colorBackground);
+  transition: var(--transition);
+}
+
+header nav .navbar-nav li:last-child:hover {
+  background-color: var(--colorHover);
+  transition: var(--transition);
+}
+
+header nav .navbar-nav a,
+header .navbar .Login:hover {
+  transition: var(--transition);
+}
+
+.header .Login:hover {
+  background-color: var(--colorHover);
+}
+
+header nav .navbar-nav a:hover {
+  color: var(--colorBackground);
+  transition: var(--transition);
+}
+
+/*############################################################## End header ############################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*##################################################        Home  Page      ############################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*############################################################## Start hero ############################################################*/
+.bg-hero {
+  background-image: linear-gradient(rgba(0, 0, 0, 20%), rgba(0, 0, 0, .5)), url(../img/hero.png);
+  min-height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.bg-hero1 {
+  background-image: linear-gradient(rgba(0, 0, 0, 20%), rgba(0, 0, 0, .5)), url(http://2.bp.blogspot.com/-OAUxU04EZ0s/USGqDphbotI/AAAAAAAAAEc/2r7y_yvUah4/s1600/best-cars-in-the-world-tacoaddiction.blogspot.com-2.jpg);
+  min-height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 10%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.hero .carousel-item .row a {
+  background-color: var(--colorBackground);
+  transition: var(--transition);
+}
+
+.hero .carousel-item .row a:hover {
+  background-color: var(--colorHover);
+  transition: var(--transition);
+}
+
+/*############################################################## End hero       #########################################################*/
+/*############################################################## Start Services ########################################################*/
+.Services .address-services h6 {
+  color: var(--colorText);
+}
+
+.Services .row .col-12 {
+  flex: 0;
+  transition: var(--transition);
+}
+
+.Services .row .col-12:hover {
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2);
+  transition: var(--transition);
+}
+
+.Services .card-img-top {
+  height: 200px;
+}
+
+.Services .row .col-12 .card-body {
+  height: 9rem;
+}
+
+@media (max-width: 325px) {
+  .Services .row .col-12 {
+    display: flex;
+  }
+}
+
+/*############################################################## End Services      ########################################################*/
+/*############################################################## Start Development ########################################################*/
+.Development {
+  background-image: linear-gradient(rgba(0, 0, 0, 20%), rgba(0, 0, 0, .5)), url(../img/bg-development.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/*############################################################## End Development ########################################################*/
+/*############################################################## Start Agencies  ########################################################*/
+.Agencies {
+  background-image: linear-gradient(rgba(0, 0, 0, 10%), rgba(0, 0, 0, .5)), url(../img/bg-Agencies.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.Agencies .address-Agencies h6 {
+  color: var(--colorText);
+}
+
+/*############################################################## End Agencies ########################################################*/
+/*############################################################## Start Scrap  ########################################################*/
+.Scrap .address-scrap h6 {
+  color: var(--colorText);
+}
+
+.Scrap .title-Scrap h2 {
+  color: var(--colorText);
+}
+
+.Scrap .title-Scrap p {
+  color: var(--colorAnyText);
+}
+
+/*############################################################## End Scrap   ########################################################*/
+/*############################################################## Start Contact ########################################################*/
+.Contact {
+  background-image: linear-gradient(rgba(0, 0, 0, 40%), rgba(0, 0, 0, .5)), url(../img/bg-contact.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.address-contact h6 {
+  color: var(--colorText);
+}
+
+.address-contact h1 {
+  color: var(--colorWhite);
+}
+
+.Contact .row .bg-form {
+  background-color: var(--colorBackground);
+}
+
+.Contact .row form input {
+  font-size: 20px;
+}
+
+.Contact .row form input::placeholder {
+  font-weight: bold;
+  opacity: 0.5;
+  font-size: 12px;
+  color: var(--colorAnyText);
+}
+
+.Contact .row form textarea::placeholder {
+  font-weight: bold;
+  opacity: 0.5;
+  font-size: 12px;
+  color: var(--colorAnyText);
+}
+
+.Contact .row form textarea {
+  resize: none;
+  outline: #0B2154;
+}
+
+.Contact .row form .btn {
+  background-color: #0B2154;
+}
+
+.Contact .row form .btn:hover {
+  background-color: #0e2c71;
+}
+
+.Contact .row .content-height {
+  height: 450px;
+}
+
+/*############################################################## End Contact    ########################################################*/
+/*############################################################## Start footer #####################################################*/
+.footer {
+  background-color: #111111;
+  padding: 50px 0 0 0;
+  color: var(--colorWhite);
+}
+
+footer .grid-footer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.colum-1,
+.colum-2,
+.colum-3,
+.colum-4 {
+  padding: 10px;
+}
+
+footer .colum-1 img {
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.footer-contact li {
+  position: relative;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 10px
+}
+
+footer .colum-1 {
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+footer .colum-1 ul {
+  padding: 0;
+}
+
+.footer .colum-1 ul li a {
+  text-decoration: none;
+  color: var(--colorWhite);
+}
+
+.footer-contact li i {
+  width: 35px;
+  line-height: 35px;
+  margin-right: 15px;
+  border-radius: 50px;
+  background: var(--colorText);
+  text-align: center;
+  color: var(--colorWhite);
+}
+
+/*###################################################### Link 1 + Link 2 */
+footer .colum-2 h4,
+footer .colum-3 h4,
+footer .colum-4 h4 {
+  color: var(--colorWhite);
+  position: relative;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  font-size: 21px;
+  font-weight: 600;
+  z-index: 1;
+}
+
+footer .colum-2 h4::before,
+footer .colum-3 h4::before,
+footer .colum-4 h4::before {
+  content: "";
+  position: absolute;
+  width: 90px;
+  height: 2px;
+  background: rgba(255, 255, 255, .2);
+  bottom: 0;
+}
+
+footer .colum-2 h4::after,
+footer .colum-3 h4::after,
+footer .colum-4 h4::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background: var(--colorText);
+  bottom: 0;
+  left: 1rem;
+}
+
+footer .footer-link {
+  padding: 0
+}
+
+footer .footer-link {
+  padding: 0
+}
+
+footer .footer-link li {
+  position: relative;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-size: 16px;
+  transition: var(--transition);
+}
+
+footer .footer-link li:hover {
+  position: relative;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-size: 16px;
+  padding-left: 10px;
+  transition: var(--transition);
+}
+
+footer .footer .colum-2 ul li a,
+footer .footer .colum-3 ul li a {
+  text-decoration: none;
+  color: var(--color3);
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+footer .footer .colum-2 ul li a:hover,
+footer .footer .colum-3 ul li a:hover {
+  color: var(--color1);
+  transition: var(--transition);
+}
+
+footer .footer-link li i {
+  width: 20px;
+  line-height: 35px;
+  text-align: center;
+  color: var(--colorText)
+}
+
+footer .colum-4 input {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 16px;
+  outline: none;
+}
+
+footer .colum-4 button {
+  z-index: 1;
+  width: 100%;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 50px;
+  outline: none;
+  font-weight: bold;
+  border: none;
+  background-color: var(--colorText);
+  color: var(--color2);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+footer .colum-4 button::before {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background-color: var(--colorWhite);
+  transform-origin: center;
+  transition: transform 0.7s ease-in-out;
+}
+
+footer .colum-4 button:hover {
+  cursor: pointer;
+  color: var(--colorText);
+  transition: var(--transition);
+}
+
+footer .colum-4 button:hover::before {
+  transform: translate3d(-50%, -50%, 0) scale3d(15, 15, 15);
+}
+
+.Copyright {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.Copyright .cop {
+  margin: auto;
+}
+
+.Copyright .cop span {
+  color: var(--colorText);
+  font-weight: bold;
+}
+
+.Copyright .social {
+  background-color: var(--colorText);
+  width: 48%;
+  height: 100px;
+  position: relative;
+}
+
+.Copyright .social::before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 75px;
+  background-color: var(--colorText);
+  transform: skewX(-30deg);
+  left: -29px;
+}
+
+.Copyright .social ul {
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  align-items: center;
+}
+
+.Copyright .social li {
+  list-style-type: none;
+  display: inline;
+  padding: 5px;
+}
+
+.Copyright li a {
+  text-decoration: none;
+}
+
+.Copyright li a i {
+  height: 45px;
+  width: 45px;
+  line-height: 45px;
+  text-align: center;
+  border-radius: 50px;
+  background: var(--colorblack);
+  color: var(--colorText);
+  transition: var(--transition);
+}
+
+.Copyright li a i:hover {
+  background-color: var(--colorWhite);
+}
+
+/*###################################################### Start Media ######################################################*/
+@media (max-width: 320px) {
+  footer {
+    width: fit-content;
+  }
+}
+
+/* extra Small */
+@media (max-width: 425px) {
+  .container {
+    width: 320px;
+  }
+}
+
+@media (max-width: 730px) {
+  .Copyright .social {
+    width: 100%;
+  }
+}
+
+/* Small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+
+}
+
+/* Medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+/*###################################################### End Media #####################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*##################################################          About          ###########################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*############################################################## Start About ###########################################################*/
+.About-page {
+  background-image: linear-gradient(rgba(0, 0, 0, 50%), rgba(0, 0, 0, .5)), url(../img/About-hero.png);
+  height: 40vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.About-page .text-header p {
+  font-size: 4rem;
+  color: var(--colorText);
+}
+
+.About-page .btn-right {
+  height: 4rem;
+  border-radius: 100px 0 0 0;
+  background-color: var(--colorText);
+}
+
+.about-content .row .icon-address i {
+  color: var(--colorText);
+}
+
+.about-content .row .icon-address h5 {
+  font-weight: bold;
+}
+
+.about-our .address-about p:nth-child(1) {
+  font-size: 2rem;
+  color: var(--colorText);
+}
+
+.about-our .address-about .row ul li {
+  font-size: 14px;
+}
+
+.about-our .address-about .row .fa-check {
+  font-size: 12px;
+  padding: 3px;
+  border: 1px solid var(--borderColor);
+  color: var(--colorText);
+  border-radius: 30px;
+}
+
+.about-our .row img:nth-child(2) {
+  margin-top: -150px;
+  margin-left: -200px;
+}
+
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*##################################################          Services          ########################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*##################################################       Start Services     ##########################################################*/
+.Services-page {
+  background-image: linear-gradient(rgba(0, 0, 0, 50%), rgba(0, 0, 0, .5)), url(../img/services-page-hero.png);
+  height: 40vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.Services-page .text-header p {
+  font-size: 4rem;
+  color: var(--colorText);
+}
+
+.Services-page .btn-right {
+  height: 4rem;
+  border-radius: 100px 0 0 0;
+  background-color: var(--colorText);
+}
+
+.services-card .card-body {
+  height: 50px;
+  font-size: 20px;
+  background-color: var(--colorBackground);
+  color: var(--colorWhite);
+}
+.services-card .card-body::before {
+  content: "";
+  position: absolute;
+  border-width: 0 144px 46px 144px;
+  border-style: solid;
+  bottom: 50px;
+  border-color: transparent transparent var(--colorBackground) transparent;
+}
+
+
+.services-content .address-services p {
+  font-size: 3rem;
+  color: var(--colorText);
+}
+
+.hero-services {
+  background-image: url('../img/hero-services.png');
+  height: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-bottom: 200px;
+}
+
+.hero-services .row>div {
+  text-align: center;
+  height: 150px;
+}
+
+.hero-services .row div p>button {
+  background-color: var(--colorBottom);
+  color: var(--colorWhite);
+}
+
+
+@media (max-width: 768px) {
+  .hero-services {
+    padding-bottom: 0;
+  }
+}
+
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*##################################################        Development  Page      ########################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*############################################################## Start Agencies ########################################################*/
+.Development-page {
+  background-image: linear-gradient(rgba(0, 0, 0, 10%), rgba(0, 0, 0, .5)), url(../img/development-hero.png);
+  height: 40vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.Development-page .text-header p {
+  font-size: 4rem;
+  color: var(--colorText);
+}
+
+.Development-page .btn-right {
+  height: 4rem;
+  border-radius: 100px 0 0 0;
+  background-color: var(--colorText);
+}
+
+.development-content .address-agencies p {
+  font-size: 3rem;
+  color: var(--colorText);
+}
+.development-content article {
+  height: 100vh;
+}
+.development-content article button{
+  font-size: 40px;
+  color: var(--colorblack);
+}
+.development-content article button:hover{
+  color: var(--colorHover);
+}
+.development-content article .nav-tabs .active{
+  color: var(--colorBottom);
+}
+.development-content article .tab-content iframe{
+  height: 100vh;
+  width: 100%;
+}
+
+
+
+
+
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*##################################################        Agencies  Page      ########################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*############################################################## Start Agencies ########################################################*/
+.Agencies-page {
+  background-image: linear-gradient(rgba(0, 0, 0, 50%), rgba(0, 0, 0, .5)), url(../img/Agencies-hero.png);
+  height: 40vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.Agencies-page .text-header p {
+  font-size: 4rem;
+  color: var(--colorText);
+}
+
+.Agencies-page .btn-right {
+  height: 4rem;
+  border-radius: 100px 0 0 0;
+  background-color: var(--colorText);
+}
+
+.agencies-content .address-agencies p {
+  font-size: 3rem;
+  color: var(--colorText);
+}
+
+/*############################################################## Start Agencies ########################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*###################################################        Scrap  Page      ##########################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*############################################################## Start Scrap    ########################################################*/
+.Scrap-page {
+  background-image: linear-gradient(rgba(0, 0, 0, 50%), rgba(0, 0, 0, .5)), url(../img/Scrap-hero.png);
+  height: 40vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.Scrap-page .text-header p {
+  font-size: 4rem;
+  color: var(--colorText);
+}
+
+.Scrap-page .btn-right {
+  height: 4rem;
+  border-radius: 100px 0 0 0;
+  background-color: var(--colorText);
+}
+
+.scrap-content .address-scrap p {
+  font-size: 3rem;
+  color: var(--colorText);
+}
+
+.scrap-content .address-scrap .row .border img {
+  height: 300px !important;
+}
+
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*##################################################          Contact          #########################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*######################################################################################################################################*/
+/*############################################################## Start Contact #########################################################*/
+.Contact-page {
+  background-image: linear-gradient(rgba(0, 0, 0, 50%), rgba(0, 0, 0, .5)), url(../img/contact-hero.png);
+  height: 40vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.Contact-page .text-header p {
+  font-size: 4rem;
+  color: var(--colorText);
+}
+
+.Contact-page .btn-right {
+  height: 4rem;
+  border-radius: 100px 0 0 0;
+  background-color: var(--colorText);
+}
+
+.img-contact {
+  width: 100%;
+}
+
+.contact .row img {
+  max-width: 90%;
+}
+
+.contact .row .form form label {
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+}
+
+.contact .row .form form input {
+  appearance: none;
+  border: 1px solid #eee;
+  color: #111;
+  font-weight: 400;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+  outline: none !important;
+  transition: var(--transition);
+}
+
+.contact .row .form form textarea {
+  appearance: none;
+  border: 1px solid #eee;
+  width: 100%;
+  color: #111;
+  font-weight: 400;
+  padding: 12pt 24pt;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+  margin-bottom: 1.4em;
+  display: block;
+  resize: none;
+  outline: 0;
+  transition: var(--transition);
+}
+
+.contact .row .form form input:focus,
+.contact .row .form form textarea:focus {
+  border: 1px solid var(--borderColor);
+  transition: var(--transition);
+  background-color: white;
+}
+
+.contact .row .form form input::placeholder,
+.contact .row .form form textarea::placeholder {
+  font-size: .9rem;
+  opacity: 0.5;
+}
+
+.contact .row .form form .btn {
+  display: inline-block;
+  padding: 6pt 20pt;
+  line-height: 1.7;
+  border: 1px solid var(--borderColor);
+  color: var(--colorText);
+  font-weight: 400;
+  transition: 0.7s;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 30px;
+  margin-bottom: 1.3em;
+  transition: 0.7s;
+  text-align: center;
+  text-decoration: none;
+}
+
+.contact .row .form form .btn:hover {
+  transition: var(--transition);
+  background-color: var(--colorBackground);
+  border: 1px solid var(--borderColor);
+  color: var(--colorWhite);
+}

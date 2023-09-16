@@ -1,7 +1,13 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView, sty } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 export default function ScrapAuctionsDetails() {
+    const navigation = useNavigation();
+
+    const Continue = () => {
+        navigation.navigate('User');
+    }
+
     return (
         <View style={{ padding: 20 }}>
             <ScrollView style={{ height: 670 }}>
@@ -79,7 +85,7 @@ export default function ScrapAuctionsDetails() {
                 </View>
 
                 <TouchableOpacity style={{ alignItems: 'center' }}>
-                    <Text style={styles.btn}>Continue</Text>
+                    <Text style={styles.btn} onPress={Continue}>Continue</Text>
                 </TouchableOpacity>
 
             </ScrollView >

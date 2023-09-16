@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler')
-const { Post, ValidateCreatedPost, ValidateUpdatePost } = require('../models//Post')
+const { Post, ValidateCreatedPost, ValidateUpdatePost } = require('../models/Post')
+const { User } = require('../models/User')
 const { cloudinaryUploadImage, cloudinaryRemoveImage } = require('../utils/cloudinary')
 const fs = require('fs')
 const path = require('path')
@@ -47,18 +48,19 @@ const getMyPostCrtl = asyncHandler(async (req, res) => {
  *  @access private ( only User )  
 ---------------------------------------------------------------*/
 const createNewPostCrtl = asyncHandler(async (req, res) => {
-    if (!req.file) {
-        res.status(400).json({ message: "no file provided" })
-    }
 
-    const { error } = ValidateCreatedPost(req.body)
-    if (error) {
-        res.status(400).json({ message: error.details[0].message })
+    // const { error } = ValidateCreatedPost(req.body)
+    // if (error) {
+    //     res.status(400).json({ message: error.details[0].message })
+    // }
+
+    const user = await User.findById(req.user.id)
+    if (!user) {
+        res.status(400).json({ message: "User not found" })
     }
 
     const imagePath = path.join(__dirname, `../images/${req.file.filename}`)
     const result = await cloudinaryUploadImage(imagePath)
-
     const post = new Post({
         nameProduct: req.body.nameProduct,
         location: req.body.location,
@@ -81,7 +83,6 @@ const createNewPostCrtl = asyncHandler(async (req, res) => {
     res.status(201).json({ message: 'Post added successfully' })
 
 })
-
 
 /**-------------------------------------------------------------
  *  @desc Update a Post

@@ -3,11 +3,14 @@ import { COLORS } from '../../constants/'
 import MyPostIcIconon from 'react-native-vector-icons/MaterialCommunityIcons'
 import NewPostIcon from 'react-native-vector-icons/Feather'
 import LogoutIcon from 'react-native-vector-icons/AntDesign'
+import File from 'react-native-vector-icons/Entypo'
 import Settings from 'react-native-vector-icons/AntDesign'
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { UserInfoContext } from '../../context/UserInfo';
 import { useContext } from 'react';
+
+
 
 
 export default function User() {
@@ -32,11 +35,14 @@ export default function User() {
     return (
         <View>
             <View style={styles.container}>
-                <Image
-                    style={styles.imageProfile}
-                    source={require('../../assets/images/profile.png')}
-                    resizeMode='contain'
-                />
+                <View style={{ flexDirection: 'row' }}>
+                    <Image
+                        style={styles.imageProfile}
+                        source={require('../../assets/images/profile.png')}
+                        resizeMode='contain'
+                    />
+                    {/* <File name="images" size={22} style={{ color: 'white' }} /> */}
+                </View>
                 <Text style={styles.name}>{userInfo.username}</Text>
                 <Text style={styles.email}>{userInfo.email}</Text>
             </View>
@@ -83,7 +89,7 @@ const styles = StyleSheet.create({
     imageProfile: {
         width: 200,
         height: 200,
-        marginTop: -50
+        marginTop: -50,
     },
     name: {
         fontSize: 26,

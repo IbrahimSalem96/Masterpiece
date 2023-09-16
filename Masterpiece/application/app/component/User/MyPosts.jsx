@@ -10,11 +10,12 @@ import axios from 'axios'
 export default function MyPosts() {
     const { userInfo, setUserInfo, fetchUserInfo } = useContext(UserInfoContext);
 
-    const [myPost, setMyPost] = useState();
+    const [myPost, setMyPost] = useState([]);
 
     useEffect(() => {
         getMyPosts();
-    })
+    }, [])
+
     const getMyPosts = () => {
         axios.get(`http://10.0.2.2:8000/api/post/my-post/${userInfo._id}`, {
             headers: {
@@ -29,38 +30,57 @@ export default function MyPosts() {
             });
     }
 
-    const renderItemMyPost = ({ item }) => (
-        <TouchableOpacity style={styles.item}>
-            <View style={styles.left}>
-                <Text style={styles.card}>{item.title}</Text>
+    const handleDelete = (id) => {
+        axios.delete(`http://10.0.2.2:8000/api/post/${id}`, {
+            headers: {
+                Authorization: "Baerer " + userInfo.token
+            }
+        })
+            .then((response) => {
+                setMyPost(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching cart data:', error);
+            });
+    }
 
-                <Image
-                    style={styles.imageCard}
-                    source={item.image}
-                    resizeMode="contain" />
 
-            </View>
+    const renderItemMyPost = ({ item }) => {
+        const dateTimeString = item.createdAt.split('T')[0];
+        return (
+            <TouchableOpacity style={styles.item} key={item._id}>
+                <View style={styles.left}>
+                    <Text style={styles.card}>{item.nameProduct}</Text>
 
-            <View style={styles.right}>
-                <View style={styles.imageContainer}>
-                    <Icon name="money" size={25} />
-                    <Text style={styles.textRight}> $20000</Text>
+                    <Image
+                        style={styles.imageCard}
+                        source={{ uri: item.image.url }}
+                        resizeMode="contain" />
+
                 </View>
 
-                <View style={styles.imageContainer}>
-                    <Date name="date" size={25} />
-                    <Text style={styles.textRight}> 17/9/2023</Text>
+                <View style={styles.right}>
+                    <View style={styles.imageContainer}>
+                        <Icon name="money" size={25} />
+                        <Text style={styles.textRight}> ${item.price}</Text>
+                    </View>
+
+
+                    <View style={styles.imageContainer}>
+                        <Date name="date" size={25} />
+                        <Text style={styles.textRight}>{dateTimeString}</Text>
+                    </View>
+
+                    <View style={styles.imageContainer}>
+                        <Delete name="delete" size={25} onPress={() => handleDelete(item._id)} />
+                        {/* <Edit name="edit" size={25} /> */}
+                    </View>
+
                 </View>
+            </TouchableOpacity >
+        )
+    }
 
-
-                <View style={styles.imageContainer}>
-                    <Delete name="delete" size={25} />
-                    {/* <Edit name="edit" size={25} /> */}
-                </View>
-
-            </View>
-        </TouchableOpacity >
-    );
 
     return (
         <FlatList

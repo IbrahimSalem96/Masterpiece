@@ -62,24 +62,23 @@ const PostSchema = new Schema({
     transmissionType: {
         type: String,
         maxlength: 100,
-        enum: ['Manual', 'Automatic']
+        // enum: ['Manual', 'Automatic']
     },
     fuelType: {
         type: String,
         maxlength: 100,
-        enum: ['Petrol', 'Diesel']
+        // enum: ['Petrol', 'Diesel']
     },
     phone: {
-        type: Number,
+        type: String,
         required: true,
         trim: true,
-        minLength: 10,
         maxLength: 14,
     },
     section: {
         type: String,
         required: true,
-        enum: ['Cars', 'Motorcycles', 'Buses', 'Trucks', 'Machines', 'Spare Parts', 'Scrap']
+        // enum: ['Cars', 'Motorcycles', 'Buses', 'Trucks', 'Machines', 'Spare Parts', 'Scrap']
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -102,11 +101,13 @@ function ValidateCreatedPost(obj) {
         location: Joi.string().min(2).max(100).trim().required(),
         kilometres: Joi.string().min(1).max(20).trim().required(),
         description: Joi.string().min(1).max(1024).trim().required(),
-        transmissionType: Joi.string().valid('Manual', 'Automatic').required(),
-        fuelType: Joi.string().valid('Petrol', 'Diesel').required(),
+        transmissionType: Joi.string().required(),
+        fuelType: Joi.string().required(),
         phone: Joi.string().min(10).max(14).trim().required(),
         price: Joi.string().min(1).max(100).trim().required(),
-        section: Joi.string().valid('Cars', 'Motorcycles', 'Buses', 'Trucks', 'Machines', 'Spare Parts', 'Scrap').required(),
+        // section: Joi.string().valid('Cars', 'Motorcycles', 'Buses', 'Trucks', 'Machines', 'Spare Parts', 'Scrap').required(),
+        section: Joi.string().required(),
+
     })
     return Schema.validate(obj)
 }

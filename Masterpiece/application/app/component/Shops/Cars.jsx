@@ -7,7 +7,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react';
 
 export default function Cars() {
-    const [cart, SetCart] = useState();
+    const [cart, setCart] = useState();
 
     useEffect(() => {
         getCart();
@@ -16,48 +16,12 @@ export default function Cars() {
         axios.get("http://10.0.2.2:8000/api/shop/car/")
             .then((response) => {
                 // Handle the response data here
-                SetCart(response.data);
+                setCart(response.data);
             })
             .catch((error) => {
                 console.error('Error fetching cart data:', error);
             });
     }
-
-    const Services = [
-        {
-            id: '1',
-            title: 'Accidents',
-            image: require('../../assets/images/Product-Cars.png'),
-            phone: '+1234567890',
-        },
-        {
-            id: '2',
-            title: 'Maintenance request',
-            image: require('../../assets/images/Product-Cars.png'),
-            phone: '0777777777',
-
-        },
-        {
-            id: '3',
-            title: 'location of the pieces',
-            image: require('../../assets/images/Product-Cars.png'),
-            phone: '0777777777',
-        },
-        {
-            id: '4',
-            title: 'Before buying',
-            image: require('../../assets/images/Product-Cars.png'),
-            phone: '0777777777',
-        },
-        {
-            id: '5',
-            title: 'Rental service',
-            image: require('../../assets/images/Product-Cars.png'),
-            phone: '0777777777',
-        },
-
-    ];
-
 
     //call phone
     const handleCallPress = (phoneNumber) => {
@@ -72,32 +36,34 @@ export default function Cars() {
     };
 
 
-    const renderItemServices = ({ item }) => (
+    const renderItemCar = ({ item }) => (
         <TouchableOpacity style={styles.item}>
             <View style={styles.left}>
-                <Text style={styles.card}>{item.title}</Text>
+                <Text style={styles.card}>{item.nameProduct}</Text>
 
                 <Image
                     style={styles.imageCard}
-                    source={item.image}
-                    resizeMode="contain" />
+                    source={{ uri: item.image.url }}
+                    resizeMode="contain"
+                />
+
 
             </View>
 
             <View style={styles.right}>
                 <View style={styles.imageContainer}>
                     <EntypoIcon name="flow-tree" size={25} />
-                    <Text style={styles.textRight}> Automatic</Text>
+                    <Text style={styles.textRight}> {item.transmissionType}</Text>
                 </View>
 
                 <View style={styles.imageContainer}>
                     <Kilometer name="meter" size={25} />
-                    <Text style={styles.textRight}> 420 km</Text>
+                    <Text style={styles.textRight}> {item.kilometres} km</Text>
                 </View>
 
                 <View style={styles.imageContainer}>
                     <Icon name="money" size={25} />
-                    <Text style={styles.textRight}> $20000</Text>
+                    <Text style={styles.textRight}> ${item.price}</Text>
                 </View>
 
 
@@ -118,7 +84,7 @@ export default function Cars() {
     return (
         <FlatList
             data={cart}
-            renderItem={renderItemServices}
+            renderItem={renderItemCar}
             keyExtractor={(item) => item.id}
             style={styles.container}
         />

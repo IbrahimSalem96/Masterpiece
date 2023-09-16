@@ -1,43 +1,25 @@
 import { Text, View, FlatList, Linking, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './style'
+import { useState, useEffect } from 'react';
+import axios from 'axios'
 
+export default function Scrap() {
+    const [scrap, setScrap] = useState();
 
-export default function Trucks() {
-    const Services = [
-        {
-            id: '1',
-            title: 'TOGG Anadolu',
-            image: require('../../assets/images/Product-Scrap.png'),
-            phone: '0777777777',
-        },
-        {
-            id: '2',
-            title: 'Mini  Cooper',
-            image: require('../../assets/images/Product-Scrap1.png'),
-            phone: '0777777777',
-        },
-        {
-            id: '3',
-            title: 'TOGG Anadolu',
-            image: require('../../assets/images/Product-Scrap.png'),
-            phone: '0777777777',
-        },
-        {
-            id: '4',
-            title: 'Mini  Cooper',
-            image: require('../../assets/images/Product-Scrap1.png'),
-            phone: '0777777777',
-        },
-        {
-            id: '5',
-            title: 'TOGG Anadolu',
-            image: require('../../assets/images/Product-Scrap.png'),
-            phone: '0777777777',
-        },
-
-    ];
-
+    useEffect(() => {
+        getScrap();
+    })
+    const getScrap = () => {
+        axios.get("http://10.0.2.2:8000/api/shop/Scrap/")
+            .then((response) => {
+                // Handle the response data here
+                setScrap(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching cart data:', error);
+            });
+    }
     //call phone
     const handleCallPress = (phoneNumber) => {
         const phoneUrl = `tel:${phoneNumber}`;
@@ -50,22 +32,28 @@ export default function Trucks() {
             .catch((error) => console.error('Error opening phone app:', error));
     };
 
-    const renderItemServices = ({ item }) => (
+
+    const renderItemgetScrap = ({ item }) => (
         <TouchableOpacity style={styles.item}>
             <View style={styles.left}>
-                <Text style={styles.card}>{item.title}</Text>
+                <Text style={styles.card}>{item.nameProduct}</Text>
 
                 <Image
                     style={styles.imageCard}
-                    source={item.image}
-                    resizeMode="contain" />
+                    source={{ uri: item.image.url }}
+                    resizeMode="contain"
+                />
+
+
             </View>
 
             <View style={styles.right}>
+
                 <View style={styles.imageContainer}>
                     <Icon name="money" size={25} />
-                    <Text style={styles.textRight}> $20000</Text>
+                    <Text style={styles.textRight}> ${item.price}</Text>
                 </View>
+
 
                 <TouchableOpacity
                     style={styles.phoneContainer}
@@ -80,10 +68,11 @@ export default function Trucks() {
         </TouchableOpacity>
     );
 
+
     return (
         <FlatList
-            data={Services}
-            renderItem={renderItemServices}
+            data={scrap}
+            renderItem={renderItemgetScrap}
             keyExtractor={(item) => item.id}
             style={styles.container}
         />

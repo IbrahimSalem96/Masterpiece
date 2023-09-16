@@ -35,6 +35,8 @@ export default function Search() {
 
     ];
 
+
+
     const renderItemCarBrands = ({ item }) => (
         <TouchableOpacity style={styles.item}>
             <Image

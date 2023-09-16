@@ -1,7 +1,14 @@
 import { Text, View, FlatList, Linking, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import axios from 'axios'
+import { useState, useEffect } from 'react';
+import { UserInfoContext } from '../../context/UserInfo';
+import { useContext } from 'react';
+import Auth from '../Auth/SignIn'
 
 export default function ScrapAuction({ navigation }) {
+    const { userInfo, setUserInfo, fetchUserInfo } = useContext(UserInfoContext);
+
     const Scrap = [
         {
             id: '1',
@@ -31,14 +38,41 @@ export default function ScrapAuction({ navigation }) {
     ];
 
 
-    const renderItemScrap = ({ item }) => (
+    const [scrapAuction, setScrapAuction] = useState();
+
+
+
+    if (userInfo !== null) {
+        useEffect(() => {
+            getScrapAuction();
+        })
+
+        const getScrapAuction = () => {
+            axios.get("http://10.0.2.2:8000/api/scrap/auction-service/", {
+                headers: {
+                    Authorization: 'Bearer ' + userInfo?.token
+                }
+            })
+                .then((response) => {
+                    setScrapAuction(response.data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching cart data:', error);
+                });
+        }
+    }
+
+
+
+
+    const renderItemScrapAuction = ({ item }) => (
         <TouchableOpacity style={styles.item}>
             <View style={styles.left}>
-                <Text style={styles.card}>{item.title}</Text>
+                <Text style={styles.card}>{item.scrapName}</Text>
 
                 <Image
                     style={styles.imageCard}
-                    source={item.image}
+                    source={{ uri: item.image.url }}
                     resizeMode="contain" />
 
             </View>
@@ -46,34 +80,40 @@ export default function ScrapAuction({ navigation }) {
             <View style={styles.right}>
                 <View style={styles.imageContainer}>
                     <Icon name="money" size={25} />
-                    <Text style={styles.textRight}> $20000</Text>
+                    <Text style={styles.textRight}> ${item.startingPrice}</Text>
                 </View>
 
                 <View style={styles.imageContainer}>
-                    <Text style={styles.textRight}>Date: {item.Date}</Text>
+                    <Text style={styles.textRight}>Date: {item.date}</Text>
                 </View>
 
                 <View style={styles.imageContainer}>
-                    <Text style={styles.textRight}>Time:  {item.Time}</Text>
+                    <Text style={styles.textRight}>Time:  {item.time}</Text>
                 </View>
 
                 <TouchableOpacity
-                    style={styles.subscriptionContainer}
-                    onPress={() => navigation.navigate(item.path)}>
-                    <Text style={styles.subscriptionText}>subscription</Text>
+                    style={styles.subscriptionContainer} >
+                    <Text style={styles.subscriptionText}
+                        onPress={() => navigation.navigate('ScrapAuctionsDetails')}
+                    >subscription</Text>
                 </TouchableOpacity>
             </View>
         </TouchableOpacity>
     );
 
     return (
-        <FlatList
-            data={Scrap}
-            renderItem={renderItemScrap}
-            keyExtractor={(item) => item.id}
-            style={styles.container}
-        />
+        userInfo !== null ? (
+            <FlatList
+                data={scrapAuction}
+                renderItem={renderItemScrapAuction}
+                keyExtractor={(item) => item._id}
+                style={styles.container}
+            />
+        ) : (
+            <Auth />
+        )
     )
+
 }
 
 

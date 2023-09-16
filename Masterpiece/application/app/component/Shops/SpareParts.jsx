@@ -1,43 +1,25 @@
 import { Text, View, FlatList, Linking, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './style'
+import { useState, useEffect } from 'react';
+import axios from 'axios'
 
 export default function SpareParts() {
-    const Services = [
-        {
-            id: '1',
-            title: 'TOGG Anadolu',
-            image: require('../../assets/images/Product-SpareParts.png'),
-            phone: '0777777777',
-        },
-        {
-            id: '2',
-            title: 'Mini  Cooper',
-            image: require('../../assets/images/Product-SpareParts1.png'),
-            phone: '0777777777',
+    const [spareParts, setSpareParts] = useState();
 
-        },
-        {
-            id: '3',
-            title: 'TOGG Anadolu',
-            image: require('../../assets/images/Product-SpareParts.png'),
-            phone: '0777777777',
-        },
-        {
-            id: '4',
-            title: 'Mini  Cooper',
-            image: require('../../assets/images/Product-SpareParts1.png'),
-            phone: '0777777777',
-        },
-        {
-            id: '5',
-            title: 'TOGG Anadolu',
-            image: require('../../assets/images/Product-SpareParts.png'),
-            phone: '0777777777',
-        },
-
-    ];
-
+    useEffect(() => {
+        getSpareParts();
+    })
+    const getSpareParts = () => {
+        axios.get("http://10.0.2.2:8000/api/shop/spare-parts/")
+            .then((response) => {
+                // Handle the response data here
+                setSpareParts(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching cart data:', error);
+            });
+    }
     //call phone
     const handleCallPress = (phoneNumber) => {
         const phoneUrl = `tel:${phoneNumber}`;
@@ -50,22 +32,28 @@ export default function SpareParts() {
             .catch((error) => console.error('Error opening phone app:', error));
     };
 
-    const renderItemServices = ({ item }) => (
+    const renderItemgetSpareParts = ({ item }) => (
         <TouchableOpacity style={styles.item}>
             <View style={styles.left}>
-                <Text style={styles.card}>{item.title}</Text>
+                <Text style={styles.card}>{item.nameProduct}</Text>
 
                 <Image
                     style={styles.imageCard}
-                    source={item.image}
-                    resizeMode="contain" />
+                    source={{ uri: item.image.url }}
+                    resizeMode="contain"
+                />
+
+
             </View>
 
             <View style={styles.right}>
+
                 <View style={styles.imageContainer}>
                     <Icon name="money" size={25} />
-                    <Text style={styles.textRight}> $20000</Text>
+                    <Text style={styles.textRight}> ${item.price}</Text>
                 </View>
+
+
                 <TouchableOpacity
                     style={styles.phoneContainer}
                     onPress={() => handleCallPress(item.phone)} >
@@ -81,8 +69,8 @@ export default function SpareParts() {
 
     return (
         <FlatList
-            data={Services}
-            renderItem={renderItemServices}
+            data={spareParts}
+            renderItem={renderItemgetSpareParts}
             keyExtractor={(item) => item.id}
             style={styles.container}
         />

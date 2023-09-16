@@ -3,44 +3,25 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import Kilometer from 'react-native-vector-icons/Octicons';
 import styles from './style'
+import { useState, useEffect } from 'react';
+import axios from 'axios'
 
 export default function Motorcycles() {
-    const Services = [
-        {
-            id: '1',
-            title: 'TOGG Anadolu',
-            image: require('../../assets/images/Product-Motorcycles.png'),
-            phone: '0777777777',
-        },
-        {
-            id: '2',
-            title: 'Mini  Cooper',
-            image: require('../../assets/images/Product-Motorcycles1.png'),
-            phone: '0777777777',
+    const [motorcycles, setMotorcycles] = useState();
 
-        },
-        {
-            id: '3',
-            title: 'TOGG Anadolu',
-            image: require('../../assets/images/Product-Motorcycles.png'),
-            phone: '0777777777',
-        },
-        {
-            id: '4',
-            title: 'Mini  Cooper',
-            image: require('../../assets/images/Product-Motorcycles1.png'),
-            phone: '0777777777',
-        },
-        {
-            id: '5',
-            title: 'TOGG Anadolu',
-            image: require('../../assets/images/Product-Motorcycles.png'),
-            phone: '0777777777',
-        },
-
-    ];
-
-
+    useEffect(() => {
+        getMotorcycles();
+    })
+    const getMotorcycles = () => {
+        axios.get("http://10.0.2.2:8000/api/shop/Motorcycles/")
+            .then((response) => {
+                // Handle the response data here
+                setMotorcycles(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching cart data:', error);
+            });
+    }
     //call phone
     const handleCallPress = (phoneNumber) => {
         const phoneUrl = `tel:${phoneNumber}`;
@@ -53,31 +34,34 @@ export default function Motorcycles() {
             .catch((error) => console.error('Error opening phone app:', error));
     };
 
-    const renderItemServices = ({ item }) => (
+    const renderItemgetMotorcycles = ({ item }) => (
         <TouchableOpacity style={styles.item}>
             <View style={styles.left}>
-                <Text style={styles.card}>{item.title}</Text>
+                <Text style={styles.card}>{item.nameProduct}</Text>
 
                 <Image
                     style={styles.imageCard}
-                    source={item.image}
-                    resizeMode="contain" />
+                    source={{ uri: item.image.url }}
+                    resizeMode="contain"
+                />
+
+
             </View>
 
             <View style={styles.right}>
                 <View style={styles.imageContainer}>
                     <EntypoIcon name="flow-tree" size={25} />
-                    <Text style={styles.textRight}> Automatic</Text>
+                    <Text style={styles.textRight}> {item.transmissionType}</Text>
                 </View>
 
                 <View style={styles.imageContainer}>
                     <Kilometer name="meter" size={25} />
-                    <Text style={styles.textRight}> 420 km</Text>
+                    <Text style={styles.textRight}> {item.kilometres} km</Text>
                 </View>
 
                 <View style={styles.imageContainer}>
                     <Icon name="money" size={25} />
-                    <Text style={styles.textRight}> $20000</Text>
+                    <Text style={styles.textRight}> ${item.price}</Text>
                 </View>
 
 
@@ -96,8 +80,8 @@ export default function Motorcycles() {
 
     return (
         <FlatList
-            data={Services}
-            renderItem={renderItemServices}
+            data={motorcycles}
+            renderItem={renderItemgetMotorcycles}
             keyExtractor={(item) => item.id}
             style={styles.container}
         />

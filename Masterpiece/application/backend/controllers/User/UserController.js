@@ -38,54 +38,38 @@ const getCountUsertCtrl = asyncHandler(async (req, res) => {
  *  @access private ( only User )  
 ---------------------------------------------------------------*/
 const updateUserCtrl = asyncHandler(async (req, res) => {
-
     if (req.user.id !== req.params.id) {
-        return res.status(403).json('you are not allowed, you only can update your profilel')
+        return res.status(403).json({ message: 'You are not allowed to update this profile' });
     }
 
-    const { error } = ValidateUpdateUser(req.body)
-    if (error) {
-        return res.status(400).json({ message: error.details[0].message })
-    }
-
-    if (req.body.password) {
-        const salt = await bcrypt.genSalt(10)
-        req.body.password = await bcrypt.hash(req.body.password, salt)
-    }
-    const user = await User.findById(req.params.id);
-
-    if (!user) {
-        res.status(404).json({ message: "User not found" })
-    }
-
-    if (user.profilePhoto.publicId !== null) {
-        await cloudinaryRemoveImage(user.profilePhoto.publicId)
-    }
-    console.log(__dirname)
-
-    const imagePath = path.join(__dirname, `../../images/${req.file.filename}`)
-    const result = await cloudinaryUploadImage(imagePath)
-
-    let updateUser = await User.findByIdAndUpdate(req.params.id, {
-        $set: {
-            email: req.body.email,
-            userName: req.body.userName,
-            password: req.body.password,
-            bio: req.body.bio,
-            phone: req.body.phone,
-            address: req.body.address,
-            profilePhoto: {
-                url: result.secure_url,
-                publicId: result.public_id
-            }
+    try {
+        const user = await User.findById(req.params.id);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
         }
-    }, { new: true }).select('-password')
 
-    fs.unlinkSync(imagePath);
-    res.status(200).json(updateUser)
+        if (req.body.fullName) {
+            user.username = req.body.fullName;
+        }
 
-})
+        if (req.body.bio) {
+            user.bio = req.body.bio;
+        }
 
+        if (req.body.address) {
+            user.address = req.body.address;
+        }
+
+        await user.save();
+
+        // Send the updated user object as the response
+        res.status(200).json(user);
+    } catch (error) {
+        // Handle any potential errors here
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred while updating the user' });
+    }
+});
 
 
 /**-------------------------------------------------------------
@@ -115,10 +99,11 @@ const deleteUsertCtrl = asyncHandler(async (req, res) => {
  * @access  public
 */
 const changePasswordCtrl = asyncHandler(async (req, res) => {
-    const { error } = validatechangePassword(req.body);
-    if (error) {
-        return res.status(400).json({ message: error.details[0].message });
-    }
+    // const { error } = validatechangePassword(req.body);
+    // if (error) {
+    //     return res.status(400).json({ message: error.details[0].message });
+    // }
+
 
     const user = await User.findOne({ _id: req.params.id });
 

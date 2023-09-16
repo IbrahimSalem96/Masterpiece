@@ -1,45 +1,67 @@
 import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity, Share } from 'react-native';
 import { COLORS } from '../../constants/'
 import { useNavigation } from '@react-navigation/native';
+import { UserInfoContext } from '../../context/UserInfo';
+import { useContext } from 'react';
+
 export default function Profile() {
+    const { userInfo, setUserInfo } = useContext(UserInfoContext);
     const navigation = useNavigation();
+    let List
+    if (userInfo !== null) {
+        List = [
+            {
+                id: '1',
+                title: 'Contact us',
+                screen: 'ContactUs',
+                image: require('../../assets/icons/Contactus.png'),
+            },
+            {
+                id: '2',
+                title: 'About',
+                screen: 'About',
+                image: require('../../assets/icons/About.png'),
 
-    const List = [
-        {
-            id: '1',
-            title: 'Sing In | Sign Up',
-            screen: 'SignIn',
-            image: require('../../assets/icons/Sing.png'),
-        },
-        {
-            id: '2',
-            title: 'Contact us',
-            screen: 'ContactUs',
-            image: require('../../assets/icons/Contactus.png'),
-        },
-        {
-            id: '3',
-            title: 'About',
-            screen: 'About',
-            image: require('../../assets/icons/About.png'),
+            },
+            {
+                id: '3',
+                title: 'Share Application ',
+                shareText: 'Take a look at this application, it contains everything you want in your car and provides a lot of services',
+                image: require('../../assets/icons/ShareApplication.png'),
 
-        },
-        {
-            id: '4',
-            title: 'Share Application ',
-            shareText: 'Take a look at this application, it contains everything you want in your car and provides a lot of services',
-            image: require('../../assets/icons/ShareApplication.png'),
+            },
+        ];
+    } else {
+        List = [
+            {
+                id: '1',
+                title: 'Sing In | Sign Up',
+                screen: 'SignIn',
+                image: require('../../assets/icons/Sing.png'),
+            },
+            {
+                id: '2',
+                title: 'Contact us',
+                screen: 'ContactUs',
+                image: require('../../assets/icons/Contactus.png'),
+            },
+            {
+                id: '3',
+                title: 'About',
+                screen: 'About',
+                image: require('../../assets/icons/About.png'),
 
-        },
-        // {
-        //     id: '5',
-        //     title: 'Setting',
-        //     screen: '',
-        //     image: require('../../assets/icons/Setting.png'),
+            },
+            {
+                id: '4',
+                title: 'Share Application ',
+                shareText: 'Take a look at this application, it contains everything you want in your car and provides a lot of services',
+                image: require('../../assets/icons/ShareApplication.png'),
 
-        // },
+            },
+        ];
+    }
 
-    ];
     const renderItemList = ({ item }) => (
         <TouchableOpacity style={styles.item}
             onPress={() => {

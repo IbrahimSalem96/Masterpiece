@@ -72,41 +72,21 @@ module.exports.getResetPasswordLinkCtrl = asyncHandler(async (req, res) => {
 
 /** 
  * @desc    Reset Password
- * @route   /api/password/reset-password/:userId/:token
+ * @route   /api/password/reset-password/:id
  * @method  POST
  * @access  public
 */
 module.exports.resetPasswordCtrl = asyncHandler(async (req, res) => {
-    const { error } = validateNewPassword(req.body);
-    if (error) {
-        return res.status(400).json({ message: error.details[0].message })
-    }
-
-    const user = await User.findById(req.params.userId);
+    const user = await User.findById(req.params.id);
     if (!user) {
-        return res.status(400).json({ message: "invalid link" })
-    }
-
-    const verificationToken = await VerificationToken.findOne({
-        userId: user._id,
-        token: req.params.token,
-    });
-    if (!verificationToken) {
-        return res.status(400).json({ message: "invalid link" })
-    }
-
-    if (!user.isAccountVerified) {
-        user.isAccountVerified = true
+        return res.status(400).json({ message: "User not found" })
     }
 
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    const hashedPassword = await bcrypt.hash(req.body.newPassword, salt);
 
     user.password = hashedPassword;
     await user.save();
-    await VerificationToken.findOneAndDelete({ userId: user._id, })
 
-    res.status(200).json({ message: "Password reset successfully, please log in" })
+    res.status(200).json({ message: "Password reset successfully " })
 });
-
-

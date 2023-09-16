@@ -1,17 +1,44 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, TextInput, Text, TouchableOpacity } from 'react-native';
+import axios from 'axios';
+import { UserInfoContext } from '../../context/UserInfo';
+import { useNavigation } from '@react-navigation/native';
 
 export default function ChangePassword() {
+    const { userInfo, setUserInfo, fetchUserInfo } = useContext(UserInfoContext);
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
+    const navigation = useNavigation();
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleConfirm = () => {
-        console.log('current Password:', currentPassword);
-        console.log('new Password:', newPassword);
-        console.log('confirm New Password:', confirmNewPassword);
-
+        if (newPassword === confirmNewPassword) {
+            changePassword()
+        } else {
+            setErrorMessage('New Password does not match confirm New Password.');
+        }
     };
+
+    const changePassword = () => {
+        axios.put(`http://10.0.2.2:8000/api/users/change-password/${userInfo._id}`,
+            {
+                currentPassword,
+                newPassword,
+            }, {
+            headers: {
+                Authorization: "Baerer " + userInfo.token
+            }
+        }).then((data) => {
+            navigation.navigate('User');
+        })
+            .catch((error) => {
+                setErrorMessage('An error occurred, please try again later');
+            });
+    }
+
+
+
     return (
         <View style={styles.container}>
             <Text style={styles.lable}>Current Password</Text>
@@ -47,6 +74,8 @@ export default function ChangePassword() {
             >
                 <Text style={styles.buttonText}>Confirm</Text>
             </TouchableOpacity>
+
+            <Text style={styles.error}> {errorMessage}</Text>
         </View>
     )
 }
@@ -96,6 +125,11 @@ const styles = {
         color: 'white',
         fontWeight: '400',
         fontSize: 18
+    },
+    error: {
+        marginTop: 30,
+        color: 'red',
+        fontSize: 16,
     },
 
 };

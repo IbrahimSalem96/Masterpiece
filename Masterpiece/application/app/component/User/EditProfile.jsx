@@ -1,44 +1,72 @@
-import { useState } from 'react';
+import { useState, useContext, } from 'react';
 import { View, TextInput, Text, TouchableOpacity } from 'react-native';
+import axios from 'axios';
+import { UserInfoContext } from '../../context/UserInfo';
+import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function EditProfile() {
-    const [currentPassword, setCurrentPassword] = useState('');
-    const [newPassword, setNewPassword] = useState('');
-    const [confirmNewPassword, setConfirmNewPassword] = useState('');
+    const [fullName, setFullName] = useState('');
+    const [bio, setBio] = useState('');
+    const [address, setAddress] = useState('');
+    const { userInfo, setUserInfo, fetchUserInfo } = useContext(UserInfoContext);
+    const navigation = useNavigation();
 
-    const handleConfirm = () => {
-        console.log('current Password:', currentPassword);
-        console.log('new Password:', newPassword);
-        console.log('confirm New Password:', confirmNewPassword);
 
+    const handleEdit = async () => {
+        try {
+            const response = await axios.put(`http://10.0.2.2:8000/api/users/${userInfo._id}`, {
+                fullName,
+                bio,
+                address,
+            }, {
+                headers: {
+                    Authorization: "Bearer " + userInfo.token,
+                },
+            });
+
+            if (response.status === 200 && response.data) {
+                const local = JSON.parse(await AsyncStorage.getItem("userInfo"));
+                local.username = fullName;
+
+                await AsyncStorage.setItem("userInfo", JSON.stringify(local));
+
+                fetchUserInfo();
+                navigation.navigate('User');
+            } else {
+                console.error('Error updating user data:', response);
+            }
+        } catch (error) {
+            console.error('Error updating user data:', error);
+        }
     };
 
     return (
         <View style={styles.container}>
             <TextInput
-                value={currentPassword}
-                onChangeText={text => setCurrentPassword(text)}
+                value={fullName}
+                onChangeText={text => setFullName(text)}
                 placeholder="Full Name"
                 style={styles.input}
             />
 
             <TextInput
-                value={newPassword}
-                onChangeText={text => setNewPassword(text)}
+                value={bio}
+                onChangeText={text => setBio(text)}
                 placeholder="bio"
                 style={styles.input}
             />
 
             <TextInput
-                value={confirmNewPassword}
-                onChangeText={text => setConfirmNewPassword(text)}
+                value={address}
+                onChangeText={text => setAddress(text)}
                 placeholder="Address"
                 style={styles.input}
             />
 
             <TouchableOpacity
                 style={styles.button}
-                onPress={handleConfirm}
+                onPress={handleEdit}
             >
                 <Text style={styles.buttonText}>Confirm</Text>
             </TouchableOpacity>

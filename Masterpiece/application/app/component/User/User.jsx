@@ -37,8 +37,8 @@ export default function User() {
                     source={require('../../assets/images/profile.png')}
                     resizeMode='contain'
                 />
-                <Text style={styles.name}>Ashutosh Pandey</Text>
-                <Text style={styles.email}>ashutosh@amitcorpo.com</Text>
+                <Text style={styles.name}>{userInfo.username}</Text>
+                <Text style={styles.email}>{userInfo.email}</Text>
             </View>
 
             <View style={styles.contanierList}>

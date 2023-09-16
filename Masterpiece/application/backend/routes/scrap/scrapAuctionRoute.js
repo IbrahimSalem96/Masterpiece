@@ -1,13 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const { verifyTokenAdmin } = require('../../middlewares/verifyToken')
+const { verifyToken } = require('../../middlewares/verifyToken')
 const { getA11AuctionServiceCrtl } = require('../../controllers/scrap/scrapAuctionController')
 
 
 
 // route 
 router.route('/')
-    .get(verifyTokenAdmin, getA11AuctionServiceCrtl)
+    .get(verifyToken, getA11AuctionServiceCrtl)
 
 
 

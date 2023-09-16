@@ -3,7 +3,6 @@ import { View, TextInput, Text, TouchableOpacity } from 'react-native';
 
 export default function NewPost() {
     const [name, setName] = useState('');
-    const [product, setProduct] = useState('');
     const [price, setPrice] = useState('');
     const [location, setLocation] = useState('');
     const [kilometres, setKilometres] = useState('');
@@ -18,6 +17,11 @@ export default function NewPost() {
         console.log('Price:', price);
 
     };
+
+
+
+
+
 
     return (
         <View style={{ padding: 20 }}>
@@ -74,6 +78,7 @@ export default function NewPost() {
                 placeholder="Fuel Type"
                 style={styles.input}
             />
+
 
             <TextInput
                 value={description}

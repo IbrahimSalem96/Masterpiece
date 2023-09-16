@@ -3,30 +3,31 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Date from 'react-native-vector-icons/Fontisto';
 import Delete from 'react-native-vector-icons/AntDesign';
 import Edit from 'react-native-vector-icons/FontAwesome';
+import { UserInfoContext } from '../../context/UserInfo';
+import { useContext, useState, useEffect } from 'react';
+import axios from 'axios'
 
 export default function MyPosts() {
+    const { userInfo, setUserInfo, fetchUserInfo } = useContext(UserInfoContext);
 
-    const MyPost = [
-        {
-            id: '1',
-            title: 'Accidents',
-            image: require('../../assets/images/Product-Cars.png'),
-            phone: '+1234567890',
-        },
-        {
-            id: '2',
-            title: 'Maintenance request',
-            image: require('../../assets/images/Product-Cars.png'),
-            phone: '0777777777',
+    const [myPost, setMyPost] = useState();
 
-        },
-        {
-            id: '3',
-            title: 'location of the pieces',
-            image: require('../../assets/images/Product-Cars.png'),
-            phone: '0777777777',
-        },
-    ];
+    useEffect(() => {
+        getMyPosts();
+    })
+    const getMyPosts = () => {
+        axios.get(`http://10.0.2.2:8000/api/post/my-post/${userInfo._id}`, {
+            headers: {
+                Authorization: "Baerer " + userInfo.token
+            }
+        })
+            .then((response) => {
+                setMyPost(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching cart data:', error);
+            });
+    }
 
     const renderItemMyPost = ({ item }) => (
         <TouchableOpacity style={styles.item}>
@@ -63,7 +64,7 @@ export default function MyPosts() {
 
     return (
         <FlatList
-            data={MyPost}
+            data={myPost}
             renderItem={renderItemMyPost}
             keyExtractor={(item) => item.id}
             style={styles.container}

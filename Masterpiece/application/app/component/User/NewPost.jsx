@@ -5,6 +5,7 @@ import axios from 'axios'
 import { UserInfoContext } from '../../context/UserInfo';
 import { useNavigation } from '@react-navigation/native';
 import File from 'react-native-vector-icons/FontAwesome'
+import { Picker } from '@react-native-picker/picker';
 
 export default function NewPost() {
     const { userInfo, setUserInfo, fetchUserInfo } = useContext(UserInfoContext);
@@ -17,9 +18,8 @@ export default function NewPost() {
     const [description, setDescription] = useState('');
     const [image, setImage] = useState(null);
     const [phone, setPhone] = useState('')
-    const [section, setSection] = useState("Cars")
+    const [section, setSection] = useState("Cars");
     const navigation = useNavigation();
-
 
 
     const handleConfirm = async () => {
@@ -103,7 +103,6 @@ export default function NewPost() {
                 />
             </View>
 
-
             <View style={styles.row}>
                 <TextInput
                     value={transmissionType}
@@ -132,8 +131,23 @@ export default function NewPost() {
                 <Text style={styles.inputFile} onPress={pickImage}>
                     <File name="file-photo-o" size={32} />
                 </Text>
-
             </View>
+
+            <Picker
+                style={styles.inputFile}
+                selectedValue={section}
+                onValueChange={(itemValue, itemIndex) =>
+                    setSection(itemValue)
+                }>
+                <Picker.Item label="Cars" value="Cars" />
+                <Picker.Item label="Motorcycles" value="Motorcycles" />
+                <Picker.Item label="Buses" value="Buses" />
+                <Picker.Item label="Trucks" value="Trucks" />
+                <Picker.Item label="Machines" value="Machines" />
+                <Picker.Item label="Spare Parts" value="Spare Parts" />
+                <Picker.Item label="Scrap" value="Scrap" />
+            </Picker>
+
 
             <TextInput
                 value={description}
